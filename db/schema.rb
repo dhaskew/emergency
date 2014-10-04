@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141004152359) do
+ActiveRecord::Schema.define(version: 20141004155634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(version: 20141004152359) do
   end
 
   add_index "apikeys", ["user_id"], name: "index_apikeys_on_user_id", using: :btree
+
+  create_table "buttoncontacts", force: true do |t|
+    t.integer  "button_id"
+    t.string   "email"
+    t.string   "sms"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "buttoncontacts", ["button_id"], name: "index_buttoncontacts_on_button_id", using: :btree
 
   create_table "buttons", force: true do |t|
     t.integer  "apikey_id"
