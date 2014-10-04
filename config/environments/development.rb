@@ -1,5 +1,22 @@
 Rails.application.configure do
   config.action_mailer.default_url_options = {host: "localhost", port: 3000}
+  #config.action_mailer.delivery_method = :letter_opener
+  
+  ActionMailer::Base.delivery_method = :smtp
+  ActionMailer::Base.perform_deliveries = true
+  ActionMailer::Base.raise_delivery_errors = true
+
+
+  ActionMailer::Base.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :domain               => "gmail.com",
+    :user_name            => "foobar313131@gmail.com",
+    :password             => "fb313131",
+    :authentication       => "plain",
+    :enable_starttls_auto => true
+  }
+  
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on

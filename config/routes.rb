@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   #get 'misc_pages/index'
 
+  get '/alert' => 'buttons#alert'
+
   resources :buttons
 
   root to: 'misc_pages#index'

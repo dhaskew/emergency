@@ -8,5 +8,9 @@ class ButtonsController < ApplicationController
     end
   end
 
+  def alert
+    AlertMailer.send_alert(1).deliver
+  end
+
 end
 

@@ -39,6 +39,10 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 
+gem 'markerb'
+gem 'kramdown'
+gem 'letter_opener'
+
 gem "haml-rails"
 gem "twitter-bootstrap-rails"
 group :development do
