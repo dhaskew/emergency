@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   #get 'misc_pages/index'
 
   get '/alert' => 'buttons#alert'
+  post '/alert' => 'buttons#alert'
+  put 'alert' => 'buttons#alert'
 
+  post '/newkey' => 'misc_pages#newkey'
+  get '/newdevice' => 'misc_pages#newdevice'
   resources :buttons
 
   root to: 'misc_pages#index'

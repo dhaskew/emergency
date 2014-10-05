@@ -1,2 +1,64 @@
-%h1 MiscPages#index
-%p Find me in app/views/misc_pages/index.html.haml
+%p
+  = "Settings for device: #{@key.name}"
+
+%table.table.table-striped
+  %tbody
+    %tr
+      %td 
+        = check_box_tag 'default1'
+        -#= label_tag 'default1'
+      %td
+        = check_box_tag 'default2'
+      %td
+        = check_box_tag 'default3'
+      %td
+        = check_box_tag 'default4'
+    %tr
+      %td Emergency
+      %td Stranger Danger
+      %td I've Fallen
+      %td Come Pick Me Up
+- if @buttons.size ==  0
+  = form_tag buttons_path, :method => :post do
+    %div#b1{style:"display:none"}
+      %p
+      %h2#bn1 Emergency
+      %table.table.table-striped#t1
+        %thead
+          %tr
+            %th 
+              %button.btn.btn-mini.btn-primary#add_row1{type:"button"} + 
+            %th Email
+            %th SMS
+          %tbody
+            %tr
+              %td 1
+              %td
+                = text_field_tag 'email'
+              %td
+                = text_field_tag 'sms'
+      %button.btn.btn-mini.btn-primary#save1{type:"button"} Save
+- else
+  %p Existing Buttons
+:javascript
+  $(function() {
+
+    $('#default1').bind('change', function () {
+      if ($(this).is(':checked'))
+        $('#b1').show();
+      else
+        $('#b1').hide();
+
+    });
+    
+    var new_row = function() {
+      $("#b1>table>tbody>tr:first-child").clone().appendTo("#t1")
+      var next_num = $("#b1>table>tbody>tr").length
+      $("#b1>table>tbody>tr:last-child>td:first-child").text(next_num)
+    }
+    
+    $('#add_row1').click(function(e) {
+      new_row();
+    });
+
+  });

@@ -1,0 +1,9 @@
+%p Hello!
+%p
+%p Before you can continue, please tell us then name fo the device you will be configuring.  If you don't know, just make something up.  Something like "john boy's iphone" or similar will be just fine.
+= form_tag '/newkey', method: :post do
+  %p
+    = text_field_tag 'device'
+  %p
+    = submit_tag 'Continue', class: "btn btn-primary"
+
