@@ -1,5 +1,12 @@
-%p Put the following code in your iPhone when prompted:
-%p
-  = @key.token
-%p
-  = link_to 'Continue', root_path
+%div{align:"center"}
+  %h3 Put the following code in your iPhone when prompted: 
+  %h1{style: "color:#77d624; font-size:450%",}
+    = @key.token
+  %p
+    = image_tag 'iphone1.png', size: '300x480'
+
+  %p
+  %p
+    = link_to 'Continue', root_path, {class: "btn btn-primary"}
+
+

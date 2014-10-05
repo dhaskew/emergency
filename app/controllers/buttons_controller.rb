@@ -24,14 +24,21 @@ class ButtonsController < ApplicationController
 
     # and then you can create a new client without parameters
     @client = Twilio::REST::Client.new
-    
+    @client2 = Twilio::REST::Client.new    
     
     @client.messages.create(
       from: '+16784981022',
-      to: '+14044068958',
+      to: '+14049989321',
+      #to: ['+14044068958','+14049989321'],
       body: 'Hey there!'
     )
-    
+   
+    @client2.messages.create(
+      from: '+16784981022',
+      to: '+14044068958',
+      body: 'Hey there 2!'
+    )
+
     AlertMailer.send_alert(1).deliver
   end
 

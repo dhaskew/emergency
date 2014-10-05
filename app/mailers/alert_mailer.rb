@@ -6,6 +6,12 @@ class AlertMailer < ActionMailer::Base
       format.text
       format.html
     end
+    
+    mail(from: "foo@bar.com", to: "renecandelier@gmail.com", subject: "test", body: "test") do |format|
+      format.text
+      format.html
+    end
+
   end
 
 =begin

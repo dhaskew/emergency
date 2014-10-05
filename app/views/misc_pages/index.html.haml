@@ -1,4 +1,4 @@
-%p
+%h3
   = "Settings for device: #{@key.name}"
 
 %table.table.table-striped
@@ -14,10 +14,14 @@
       %td
         = check_box_tag 'default4'
     %tr
-      %td Emergency
-      %td Stranger Danger
-      %td I've Fallen
-      %td Come Pick Me Up
+      %td 
+        = image_tag "emergency.png"
+      %td
+        = image_tag "stranger.png"
+      %td
+        = image_tag "fallen.png"
+      %td
+        = image_tag "pick.png"
 - if @buttons.size ==  0
   = form_tag buttons_path, :method => :post do
     %div#b1{style:"display:none"}
@@ -38,27 +42,108 @@
               %td
                 = text_field_tag 'sms'
       %button.btn.btn-mini.btn-primary#save1{type:"button"} Save
+    %div#b2{style:"display:none"}
+      %p
+      %h2#bn2 Stranger Danger 
+      %table.table.table-striped#t2
+        %thead
+          %tr
+            %th 
+              %button.btn.btn-mini.btn-primary#add_row2{type:"button"} + 
+            %th Email
+            %th SMS
+          %tbody
+            %tr
+              %td 1
+              %td
+                = text_field_tag 'email'
+              %td
+                = text_field_tag 'sms'
+      %button.btn.btn-mini.btn-primary#save2{type:"button"} Save  
+    %div#b3{style:"display:none"}
+      %p
+      %h2#bn3 I've Fallen
+      %table.table.table-striped#t3
+        %thead
+          %tr
+            %th 
+              %button.btn.btn-mini.btn-primary#add_row3{type:"button"} + 
+            %th Email
+            %th SMS
+          %tbody
+            %tr
+              %td 1
+              %td
+                = text_field_tag 'email'
+              %td
+                = text_field_tag 'sms'
+      %button.btn.btn-mini.btn-primary#save3{type:"button"} Save
+    %div#b4{style:"display:none"}
+      %p
+      %h2#bn4 Come Pick Me Up 
+      %table.table.table-striped#t4
+        %thead
+          %tr
+            %th 
+              %button.btn.btn-mini.btn-primary#add_row4{type:"button"} + 
+            %th Email
+            %th SMS
+          %tbody
+            %tr
+              %td 1
+              %td
+                = text_field_tag 'email'
+              %td
+                = text_field_tag 'sms'
+      %button.btn.btn-mini.btn-primary#save4{type:"button"} Save      
 - else
   %p Existing Buttons
 :javascript
   $(function() {
 
     $('#default1').bind('change', function () {
-      if ($(this).is(':checked'))
-        $('#b1').show();
-      else
-        $('#b1').hide();
-
+      toggle_d(1);
     });
     
-    var new_row = function() {
-      $("#b1>table>tbody>tr:first-child").clone().appendTo("#t1")
-      var next_num = $("#b1>table>tbody>tr").length
-      $("#b1>table>tbody>tr:last-child>td:first-child").text(next_num)
+    $('#default2').bind('change', function () {
+      toggle_d(2);
+    });
+    
+    $('#default3').bind('change', function () {
+      toggle_d(3);
+    });
+    
+    $('#default4').bind('change', function () {
+      toggle_d(4);
+    });
+    
+    var toggle_d = function(num){
+      if ($('#default'+num).is(':checked'))
+        $('#b'+num).show();
+      else
+        $('#b'+num).hide();
+    }
+    
+    var new_row = function(num) {
+      $("#b"+num+">table>tbody>tr:first-child").clone().appendTo("#t"+num)
+      var next_num = $("#b"+num+">table>tbody>tr").length
+      $("#b"+num+">table>tbody>tr:last-child>td:first-child").text(next_num)
     }
     
     $('#add_row1').click(function(e) {
-      new_row();
+      new_row(1);
+    });
+
+    $('#add_row2').click(function(e) {
+      new_row(2);
+    });
+
+    $('#add_row3').click(function(e) {
+      new_row(3);
+    });
+    
+    $('#add_row4').click(function(e) {
+      new_row(4);
     });
 
   });
